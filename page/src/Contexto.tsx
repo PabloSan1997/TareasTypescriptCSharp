@@ -1,26 +1,78 @@
 import React from "react";
 import { usuarioLogin } from "./apis/usuarioLogin";
+import { useCookies } from 'react-cookie';
+import { agregarTarea, readTareas } from "./apis/tareasRquest";
 
 const Contexto = React.createContext({});
 
-const initialUsuario:UsarioLogin = {
-    name:'pablo',
-    password:'admin1223'
+// eslint-disable-next-line react-refresh/only-export-components
+export const initialUsuario: UsarioLogin = {
+    name: '',
+    password: ''
 }
 
 export function Provedor({ children }: Children) {
     const [permiso, setPermiso] = React.useState(false);
     const [login, setLogin] = React.useState<UsarioLogin>(initialUsuario);
-    React.useEffect(()=>{
+    const [name, setName] = React.useState("Pablo");
+    const [cookies, setCookie, removeCookie] = useCookies(['pasale']);
+    const [tareas, setTareas] = React.useState<Tarea[]>([]);
+    const [mostrarTarea, setMostrarTarea] = React.useState<Tarea>();
+    const [mostrar, setMostrar] = React.useState(false);
+    const [actualizar, setActualizar] = React.useState(false);
+    React.useEffect(() => {
         usuarioLogin(login)
-        .then(data => setPermiso(data.permiso))
-        .catch(()=> setPermiso(false));
-    },[]);
+            .then(data => {
+                setPermiso(data.permiso);
+                setCookie('pasale', data.token, {
+                    maxAge: 5*60*60
+                });
+            })
+            .catch(() => {
+                setPermiso(false);
+                setLogin(initialUsuario);
+            });
+    }, [login]);
+    React.useEffect(() => {
+        readTareas(cookies.pasale)
+            .then(data => {
+                setName(data.name);
+                setTareas(data.tareas);
+                setPermiso(true);
+            })
+            .catch(() => {
+                setPermiso(false);
+                setTareas([]);
+            });
+    }, [permiso, actualizar]);
+
+    const logout = () => {
+        removeCookie('pasale');
+        setPermiso(false);
+    }
+
+    const agregarNuevaTarea=async(tareanueva:TareaCrear)=>{
+        try {
+            await agregarTarea(cookies.pasale, tareanueva);
+            setActualizar(!actualizar);
+        } catch (error) {
+            alert('Problemas al agregar nueva tarea');
+        }
+    }
+
     return (
         <Contexto.Provider value={{
             permiso,
             login,
-            setLogin
+            setLogin,
+            name,
+            tareas,
+            logout,
+            mostrarTarea, 
+            setMostrarTarea,
+            mostrar, 
+            setMostrar,
+            agregarNuevaTarea
         }}>
             {children}
         </Contexto.Provider>

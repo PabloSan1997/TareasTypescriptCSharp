@@ -9,8 +9,12 @@ interface UsuarioRsultLogin{
     permiso:boolean,
     message:string
 }
+interface UsuarioTareas{
+    name:string,
+    tareas:Tarea[]
+}
 interface TareaCrear{
-    tareaTitle:"string",
+    tareaTitle:string,
     tareaDescription:string
 }
 interface TareaEditar extends TareaCrear{
@@ -33,5 +37,13 @@ type Children = {
 type Contexto = {
     permiso:boolean,
     login:UsarioLogin,
-    setLogin(a:UsarioLogin):void
+    setLogin(a:UsarioLogin):void,
+    name:string,
+    tareas:Tarea[],
+    logout():void,
+    mostrarTarea:Tarea, 
+    setMostrarTarea(tarea:Tarea):void,
+    mostrar:boolean, 
+    setMostrar(a:boolean):void,
+    agregarNuevaTarea(nuevaTarea:TareaCrear):Promise<void>
 }
