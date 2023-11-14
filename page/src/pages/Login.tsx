@@ -1,7 +1,7 @@
 import { UseContexto, initialUsuario } from "../Contexto";
 import { Navigate } from 'react-router-dom';
 import React from "react";
-
+import '../estilos/login.css';
 
 export function Login() {
     const { permiso, setLogin } = UseContexto();
@@ -32,6 +32,7 @@ export function Login() {
                 id="entrada1"
                 value={texto.name}
                 onChange={setNombre}
+                placeholder="Escribir"
             />
             <label htmlFor="entrada1">Contraseña</label>
             <input
@@ -40,6 +41,7 @@ export function Login() {
                 id="entrada2"
                 value={texto.password}
                 onChange={setContrasena}
+                placeholder="Escribir"
             />
             <button className="boton" type="submit">Entrar</button>
         </form>

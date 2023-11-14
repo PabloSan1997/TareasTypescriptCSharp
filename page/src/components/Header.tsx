@@ -1,4 +1,5 @@
 import { UseContexto } from "../Contexto";
+import '../estilos/header.css';
 
 export function Header() {
     const { permiso, name, logout, tareas } = UseContexto();

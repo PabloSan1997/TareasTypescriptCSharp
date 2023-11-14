@@ -1,0 +1,41 @@
+header{
+    width: 100%;
+    background: var(--color-cabeza);
+    padding: 20px 0;
+    display: flex;
+    & h1{
+        margin-left: 2%;
+        font-size: 2.5rem;
+        color: var(--azul-letra);
+    }
+    .conteo-tareas{
+        color: var(--azul-letra);
+        margin: auto auto auto 5%;
+        font-size: 1.5rem;
+    }
+    .area_botones{
+        display: flex;
+        margin-right: 2%;
+        margin-left: auto;
+        width: 15rem;
+        & span{
+            display: flex;
+            margin: auto;
+            user-select: none;
+            &.nombre{
+                font-weight: bold;
+                color: var(--azul-letra);
+                font-size: 1.5rem;
+            }
+            &.logut{
+                text-decoration: underline;
+                color: var(--azul-letra);
+                font-size: 1.2rem;
+                &:hover{
+                    color: rgb(211, 211, 247);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
