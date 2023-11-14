@@ -45,5 +45,7 @@ type Contexto = {
     setMostrarTarea(tarea:Tarea):void,
     mostrar:boolean, 
     setMostrar(a:boolean):void,
-    agregarNuevaTarea(nuevaTarea:TareaCrear):Promise<void>
+    agregarNuevaTarea(nuevaTarea:TareaCrear):Promise<void>,
+    eliminaTareaProceso(id_tarea:string):Promise<void>,
+    cumplirTarea(tarea:Tarea):Promise<void>
 }

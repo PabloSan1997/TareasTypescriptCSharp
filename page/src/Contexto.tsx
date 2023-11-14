@@ -1,7 +1,7 @@
 import React from "react";
 import { usuarioLogin } from "./apis/usuarioLogin";
 import { useCookies } from 'react-cookie';
-import { agregarTarea, readTareas } from "./apis/tareasRquest";
+import { agregarTarea, cambiarEstadoTarea, eliminarTarea, readTareas } from "./apis/tareasRquest";
 
 const Contexto = React.createContext({});
 
@@ -20,12 +20,13 @@ export function Provedor({ children }: Children) {
     const [mostrarTarea, setMostrarTarea] = React.useState<Tarea>();
     const [mostrar, setMostrar] = React.useState(false);
     const [actualizar, setActualizar] = React.useState(false);
+
     React.useEffect(() => {
         usuarioLogin(login)
             .then(data => {
                 setPermiso(data.permiso);
                 setCookie('pasale', data.token, {
-                    maxAge: 5*60*60
+                    maxAge: 5 * 60 * 60
                 });
             })
             .catch(() => {
@@ -51,12 +52,31 @@ export function Provedor({ children }: Children) {
         setPermiso(false);
     }
 
-    const agregarNuevaTarea=async(tareanueva:TareaCrear)=>{
+    const agregarNuevaTarea = async (tareanueva: TareaCrear) => {
         try {
             await agregarTarea(cookies.pasale, tareanueva);
             setActualizar(!actualizar);
         } catch (error) {
             alert('Problemas al agregar nueva tarea');
+        }
+    }
+
+    const eliminaTareaProceso = async (id_tarea: string) => {
+        try {
+            await eliminarTarea(cookies.pasale, id_tarea);
+            setActualizar(!actualizar);
+        } catch (error) {
+            alert("Problemas para eliminar elemento");
+        }
+    }
+
+    const cumplirTarea = async (tarea: Tarea) => {
+        try {
+            const data = await cambiarEstadoTarea(cookies.pasale, tarea);
+            setActualizar(!actualizar);
+            console.log(data);
+        } catch (error) {
+            alert('Error al checar tarea');
         }
     }
 
@@ -68,11 +88,13 @@ export function Provedor({ children }: Children) {
             name,
             tareas,
             logout,
-            mostrarTarea, 
+            mostrarTarea,
             setMostrarTarea,
-            mostrar, 
+            mostrar,
             setMostrar,
-            agregarNuevaTarea
+            agregarNuevaTarea,
+            eliminaTareaProceso,
+            cumplirTarea
         }}>
             {children}
         </Contexto.Provider>
