@@ -24,8 +24,8 @@ namespace TareasServer
                 t.HasKey(p => p.Id_tarea);
                 t.Property(p => p.Estado).HasDefaultValue(false);
                 t.Property(p => p.TareaTitle).IsRequired().HasMaxLength(100);
-                t.Property(p => p.TareaDescription).IsRequired().HasMaxLength(900);
-                t.Property(p => p.Creada).HasDefaultValue(DateTime.Now);
+                t.Property(p => p.TareaDescription).IsRequired().HasMaxLength(1000);
+                t.Property(p => p.Creada).IsRequired();
                 t.HasOne(p => p.Usuario).WithMany(p => p.Tareas).HasForeignKey(p => p.Id_usuario);
             });
         }

@@ -13,11 +13,11 @@ namespace TareasServer.Services
         public async Task<UsuarioTareasMostrar> LeerTareas(Guid id_usuario)
         {
             var usuario = await _context.usuarios.Include(p => p.Tareas).FirstOrDefaultAsync(p => p.Id_usuario == id_usuario);
-            var tareasMostrar = usuario.Tareas.Select(t=>ConvertirTarea(t)).ToList();
+            var tareasMostrar = usuario.Tareas.Select(t => ConvertirTarea(t)).ToList();
             var mostrar = new UsuarioTareasMostrar()
             {
-                Name=usuario.Name,
-                Tareas=tareasMostrar
+                Name = usuario.Name,
+                Tareas = tareasMostrar
             };
             return mostrar;
         }
@@ -27,7 +27,8 @@ namespace TareasServer.Services
             {
                 TareaTitle = nuevaTarea.TareaTitle,
                 TareaDescription = nuevaTarea.TareaDescription,
-                Id_usuario = id_usuario
+                Id_usuario = id_usuario,
+                Creada = DateTime.Now
             };
             await _context.tareas.AddAsync(tarea);
             await _context.SaveChangesAsync();
