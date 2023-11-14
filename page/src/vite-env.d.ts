@@ -25,3 +25,13 @@ interface Respuesta {
     statusMessage:string,
     results:object
 }
+
+//-------Context------
+type Children = {
+    children:JSX.Element|JSX.Element[]
+}
+type Contexto = {
+    permiso:boolean,
+    login:UsarioLogin,
+    setLogin(a:UsarioLogin):void
+}
