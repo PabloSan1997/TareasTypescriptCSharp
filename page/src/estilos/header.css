@@ -39,3 +39,46 @@ header{
         }
     }
 }
+@media (max-width:740px){
+    header{
+        .conteo-tareas{
+            font-size: 1.2rem;
+        }
+    }
+}
+@media (max-width:662px){
+    header{
+        & h1{
+            font-size: 2rem;
+        }
+        .area_botones{
+            width: 8rem;
+            & span{
+                &.nombre{
+                    font-size: 1rem;
+                }
+                &.logut{
+                  font-size: .9rem;
+                }
+            }
+        }
+    }
+}
+@media (max-width:498px){
+    header{
+        flex-wrap: wrap;
+        & h1{
+            width: 100%;
+        }
+        .conteo-tareas{
+            margin: 0.5rem auto auto 2%;
+        }
+    }
+}
+@media (max-width:299px){
+    header{
+        .area_botones{
+            margin-top: 0.5rem;
+        }
+    }
+}
