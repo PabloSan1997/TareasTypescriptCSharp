@@ -47,5 +47,7 @@ type Contexto = {
     setMostrar(a:boolean):void,
     agregarNuevaTarea(nuevaTarea:TareaCrear):Promise<void>,
     eliminaTareaProceso(id_tarea:string):Promise<void>,
-    cumplirTarea(tarea:Tarea):Promise<void>
+    cumplirTarea(tarea:Tarea):Promise<void>,
+    loading:boolean, 
+    setLoading(a:boolean):void
 }

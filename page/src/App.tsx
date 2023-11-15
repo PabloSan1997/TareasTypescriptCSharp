@@ -3,6 +3,8 @@ import { Login } from './pages/Login';
 import { Tareas } from './pages/Tareas';
 import { Redirigir } from './pages/Redirigir';
 import { Header } from './components/Header';
+import { UseContexto } from './Contexto';
+import { Loading } from './components/Loading';
 
 const Rutas = () => useRoutes([
     {
@@ -20,6 +22,9 @@ const Rutas = () => useRoutes([
 ]);
 
 export function App(){
+    const {loading} = UseContexto();
+    if(loading) return <Loading/>;
+    
     return(
         <HashRouter>
             <Header/>

@@ -21,11 +21,13 @@ export function Provedor({ children }: Children) {
     const [mostrarTarea, setMostrarTarea] = React.useState<Tarea>();
     const [mostrar, setMostrar] = React.useState(false);
     const [actualizar, setActualizar] = React.useState(false);
+    const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         usuarioLogin(login)
             .then(data => {
                 setPermiso(data.permiso);
+                setLoading(true);
                 setCookie('pasale', data.token, {
                     maxAge: 5 * 60 * 60
                 });
@@ -40,11 +42,13 @@ export function Provedor({ children }: Children) {
             .then(data => {
                 setName(data.name);
                 setTareas(data.tareas);
+                setLoading(false);
                 setPermiso(true);
             })
             .catch(() => {
                 setPermiso(false);
                 setTareas([]);
+                setLoading(false);
             });
     }, [permiso, actualizar]);
 
@@ -95,7 +99,9 @@ export function Provedor({ children }: Children) {
             setMostrar,
             agregarNuevaTarea,
             eliminaTareaProceso,
-            cumplirTarea
+            cumplirTarea,
+            loading, 
+            setLoading
         }}>
             {children}
         </Contexto.Provider>

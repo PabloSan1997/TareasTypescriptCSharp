@@ -1,0 +1,17 @@
+.loading{
+    width: 100px;
+    height: 100px;
+    border: 5px solid rgb(188, 188, 236);
+    border-top-color: blue;
+    margin:10vh auto;
+    border-radius: 100%;
+    animation: girar 1s ease infinite;
+}
+@keyframes girar {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
