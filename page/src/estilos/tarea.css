@@ -1,0 +1,39 @@
+.caja-tarea{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    border: 2px solid;
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+    .tarea-title{
+        margin:1rem auto 2rem auto;
+        max-width: 95%;
+    }
+    .palomita{
+        font-size: 1.2rem;
+        font-weight: bold;
+        user-select: none;
+        cursor: pointer;
+        width: fit-content;
+        &:hover{
+            transform: scale(1.5);
+        }
+    }
+    .tarea-title{
+        cursor: pointer;
+        font-size: 1.8rem;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+    &.no-hecha{
+        color: rgb(5, 5, 44);
+        background: #cad5ee;
+        border-color: var(--color-cabeza);
+    }
+    &.hecha{
+        color: rgb(5, 44, 5);
+        background: #b5fcc1;
+        border-color: rgb(4, 48, 4);
+    }
+}

@@ -7,6 +7,7 @@
     border-radius: 10px;
     background: rgb(210, 210, 241);
     box-shadow: 5px 5px 5px rgb(1, 1, 27);
+    background:#D6E7FC ;
     .titulo{
         margin:3vh auto 2vh auto;
         color: rgb(3, 3, 31);
@@ -21,16 +22,16 @@
         font-size: 1.2rem;
         padding: 5px;
         outline: none;
-        background: rgb(223, 231, 241);
+        background: rgb(242, 244, 252);
         border: 1px solid rgb(14, 14, 116);
         border-radius: 5px;
-        color: rgb(4, 4, 48);
+        color: rgb(4, 4, 32);
         &::placeholder{
             color: rgb(130, 138, 212);
         }
     }
     .boton{
-        margin: 0 auto 2rem 5%;
+        margin: 0.5rem auto 2rem 5%;
         padding: 5px 10px;
         font-size: 1.2rem;
     }

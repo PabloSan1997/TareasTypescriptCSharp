@@ -1,5 +1,6 @@
 import { UseContexto } from "../Contexto";
 import { convertirTiempo } from "../utilities/convertirTiempo";
+import '../estilos/mostrartarea.css';
 
 export function MostrarTarea(){
     const {mostrarTarea, setMostrar, eliminaTareaProceso} = UseContexto();

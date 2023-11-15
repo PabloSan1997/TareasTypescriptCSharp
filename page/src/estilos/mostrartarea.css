@@ -1,0 +1,45 @@
+.mostrar-tarea{
+    position: fixed;
+    top:20vh;
+    left: 0;
+    right: 0;
+    bottom:auto;
+    margin: auto;
+    width: 550px;
+    background: rgb(236, 236, 247);
+    border: 3px solid var(--color-cabeza);
+    color: var(--color-cabeza);
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    box-shadow: 0 0 20px black;
+    border-radius: 10px;
+    .tarea-titulo{
+        margin: auto;
+        font-size: 1.9rem;
+    }
+    .descripcion{
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        max-width: 100%;
+        margin: 0.8rem auto 0.5rem auto;
+        text-align: justify;
+    }
+    .cerrar{
+        margin: 0 0 0 auto;
+        cursor: pointer;
+        padding: 5px;
+        user-select: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        &:hover{
+            background: rgb(203, 203, 248);
+        }
+    }
+    .boton{
+        margin: auto;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+        padding: 5px 15px;
+    }
+}

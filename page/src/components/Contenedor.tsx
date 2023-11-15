@@ -1,5 +1,6 @@
 import { UseContexto } from "../Contexto";
 import { CajaTarea } from "./Tarea";
+import '../estilos/contenedortareas.css';
 
 export function ContenedorTareas(){
     const {tareas} = UseContexto();

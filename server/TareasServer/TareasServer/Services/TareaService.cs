@@ -17,7 +17,7 @@ namespace TareasServer.Services
             var mostrar = new UsuarioTareasMostrar()
             {
                 Name = usuario.Name,
-                Tareas = tareasMostrar
+                Tareas = tareasMostrar.OrderBy(p=>p.Creada).ToList()
             };
             return mostrar;
         }
